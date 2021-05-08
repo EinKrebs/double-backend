@@ -5,9 +5,9 @@ from django.contrib import admin
 class Category(models.Model):
     name = models.CharField(max_length=255,
                             unique=True,)
-    icon = models.URLField(blank=True,
-                           # upload_to='images/category_icons',
-                           )
+    icon = models.ImageField(blank=True,
+                             upload_to='images/category_icons',
+                             )
 
     def __str__(self):
         return f'Category {self.name}'
@@ -53,9 +53,9 @@ class Theme(models.Model):
     level = models.ForeignKey(Level,
                               on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    photo = models.URLField(blank=True,
-                            # upload_to='images/theme_photos',
-                            )
+    photo = models.ImageField(blank=True,
+                              upload_to='images/theme_photos',
+                              )
 
     def __str__(self):
         return f'Theme {self.name}'
