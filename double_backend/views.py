@@ -23,7 +23,6 @@ def get_id(request):
 
 
 def get_theme(request, theme_id=None):
-    theme_id = int(theme_id)
     try:
         theme = Theme.objects.get(pk=theme_id)
     except ObjectDoesNotExist:
@@ -35,7 +34,6 @@ def get_theme(request, theme_id=None):
 
 
 def get_word(request, word_id=None):
-    word_id = int(word_id)
     try:
         print(Word.objects.get(id=word_id).to_json())
         return JsonResponse(Word.objects.get(id=word_id).to_json())
@@ -43,5 +41,5 @@ def get_word(request, word_id=None):
         return JsonResponse({})
 
 
-def get_file(request, path=None):
-    return FileResponse(filename='media' + path)
+def get_file(request, file_path=None):
+    return FileResponse(open('media/' + file_path, 'rb'))

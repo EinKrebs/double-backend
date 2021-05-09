@@ -27,10 +27,10 @@ urlpatterns = [
          get_all(models.Level)),
     path('themes/',
          get_all(models.Theme)),
-    path('themes/<theme_id>/',
+    path('themes/<int:theme_id>/',
          views.get_theme),
-    path('words/<word_id>/',
+    path('words/<int:word_id>/',
          views.get_word),
-    path('media/<file_path>',
+    path('media/<path:file_path>/',
          views.get_file)
 ]
