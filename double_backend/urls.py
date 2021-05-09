@@ -30,5 +30,7 @@ urlpatterns = [
     path('themes/<theme_id>/',
          views.get_theme),
     path('words/<word_id>/',
-         views.get_word)
+         views.get_word),
+    path('media/<file_path>',
+         views.get_file)
 ]

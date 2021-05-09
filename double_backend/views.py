@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 from double_backend.models import (
     Category,
     Level,
@@ -41,3 +41,7 @@ def get_word(request, word_id=None):
         return JsonResponse(Word.objects.get(id=word_id).to_json())
     except ObjectDoesNotExist:
         return JsonResponse({})
+
+
+def get_file(request, path=None):
+    return FileResponse(filename='media' + path)

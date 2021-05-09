@@ -16,7 +16,7 @@ class Category(models.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'icon': self.icon if self.icon is not None else '',
+            'icon': self.icon.url if self.icon else '',
         }
 
 
@@ -66,7 +66,7 @@ class Theme(models.Model):
             'category': self.category.id,
             'level': self.level.id,
             'name': self.name,
-            'photo': self.photo
+            'photo': self.photo.url if self.photo else ''
         }
 
 
