@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -19,10 +20,19 @@ class Category(models.Model):
             'icon': self.icon.url if self.icon else '',
         }
 
+    def icon_preview(self):
+        if self.icon:
+            return mark_safe(f'<img src="{ self.icon.url}" width="150" height="150" />')
+        else:
+            return '(No image)'
+    icon_preview.short_description = 'Icon preview'
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = (
+        'icon_preview',
+    )
 
 
 class Level(models.Model):
@@ -69,10 +79,19 @@ class Theme(models.Model):
             'photo': self.photo.url if self.photo else ''
         }
 
+    def photo_preview(self):
+        if self.photo:
+            return mark_safe(f'<img src="{ self.photo.url}" width="150" height="150" />')
+        else:
+            return '(No image)'
+    photo_preview.short_description = 'Photo preview'
+
 
 @admin.register(Theme)
 class ThemeAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = (
+        'photo_preview',
+    )
 
 
 class Word(models.Model):
@@ -83,10 +102,9 @@ class Word(models.Model):
                                      null=False)
     example = models.TextField(blank=True,
                                null=False)
-    sound = models.URLField(max_length=255,
-                            blank=True,
-                            null=False)
     themes = models.ManyToManyField(Theme)
+    sound = models.FileField(upload_to='sounds',
+                             blank=True)
 
     def __str__(self):
         return f'Word {self.name}'
@@ -107,7 +125,26 @@ class Word(models.Model):
             'name': self.name,
         }
 
+    def sound_player(self):
+        if self.sound:
+            sound_type = self.sound.name[self.sound.name.rfind('.') + 1:]
+            if sound_type == 'mp3':
+                src_type = 'mpeg'
+            else:
+                src_type = 'ogg'
+            src_type = 'audio/' + src_type
+            return mark_safe(
+                f'<audio controls> '
+                f'<source src="{self.sound.url}" type="{src_type}"> '
+                f"Your browser doesn't support the audio element </audio>"
+            )
+        else:
+            return '(No sound)'
+    sound_player.short_description = 'Sound preview'
+
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = (
+        'sound_player',
+    )
