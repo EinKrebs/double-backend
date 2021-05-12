@@ -2,4 +2,4 @@
 </br>
 
 Чтобы поднять сервер, нужно из корневой директории выполнить команду
-``sudo docker-compose build``, затем `sudo docker-compose up`
+``docker-compose build``, затем `docker-compose up`

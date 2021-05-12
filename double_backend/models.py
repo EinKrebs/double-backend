@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 
@@ -28,13 +27,6 @@ class Category(models.Model):
     icon_preview.short_description = 'Icon preview'
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'icon_preview',
-    )
-
-
 class Level(models.Model):
     name = models.CharField(max_length=255,
                             unique=True)
@@ -50,11 +42,6 @@ class Level(models.Model):
             'name': self.name,
             'code': self.code,
         }
-
-
-@admin.register(Level)
-class LevelAdmin(admin.ModelAdmin):
-    pass
 
 
 class Theme(models.Model):
@@ -85,13 +72,6 @@ class Theme(models.Model):
         else:
             return '(No image)'
     photo_preview.short_description = 'Photo preview'
-
-
-@admin.register(Theme)
-class ThemeAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'photo_preview',
-    )
 
 
 class Word(models.Model):
@@ -141,10 +121,3 @@ class Word(models.Model):
         else:
             return '(No sound)'
     sound_player.short_description = 'Sound preview'
-
-
-@admin.register(Word)
-class WordAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'sound_player',
-    )
