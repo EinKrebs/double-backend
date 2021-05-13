@@ -11,7 +11,6 @@ def check_secret(handler):
     def res(request):
         if ('Secret' not in request.headers
                 or request.headers['Secret'] != API_SECRET):
-            print(request.headers['Secret'])
             return HttpResponse(status=403)
         else:
             return handler(request)
