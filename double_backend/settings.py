@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,11 +77,12 @@ WSGI_APPLICATION = 'double_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': 'db',
+        'USER': 'db',
+        'PASSWORD': 'fvba8mp9r79559ya',
+        'HOST': 'app-b84b9cec-446c-40b4-8978-f582dedf33b0-do-user-9223075-0.b.db.ondigitalocean.com',
+        'PORT': 25060,
+        'SSLMODE': 'require',
     }
 }
 
@@ -133,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 API_SECRET = 'iaksjmdapkojnqw'
+
+STATIC_ROOT = '/static'
