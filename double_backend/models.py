@@ -2,6 +2,10 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 
+def get_img(img_url):
+    mark_safe(f'<img src="{img_url}" width="150" height="150" />')
+
+
 class Category(models.Model):
     name = models.CharField(max_length=255,
                             unique=True,)
@@ -21,7 +25,7 @@ class Category(models.Model):
 
     def icon_preview(self):
         if self.icon:
-            return mark_safe(f'<img src="{ self.icon.url}" width="150" height="150" />')
+            return get_img(self.icon.url)
         else:
             return '(No image)'
     icon_preview.short_description = 'Icon preview'
@@ -68,7 +72,7 @@ class Theme(models.Model):
 
     def photo_preview(self):
         if self.photo:
-            return mark_safe(f'<img src="{ self.photo.url}" width="150" height="150" />')
+            return get_img(self.photo.url)
         else:
             return '(No image)'
     photo_preview.short_description = 'Photo preview'

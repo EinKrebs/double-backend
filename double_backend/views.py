@@ -43,7 +43,6 @@ def get_theme(request, theme_id=None):
 @check_secret
 def get_word(request, word_id=None):
     try:
-        print(Word.objects.get(id=word_id).to_json())
         return JsonResponse(Word.objects.get(id=word_id).to_json())
     except ObjectDoesNotExist:
         return JsonResponse({})
