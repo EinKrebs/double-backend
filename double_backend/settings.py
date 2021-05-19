@@ -77,12 +77,11 @@ WSGI_APPLICATION = 'double_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db',
-        'USER': 'db',
-        'PASSWORD': 'fvba8mp9r79559ya',
-        'HOST': 'app-b84b9cec-446c-40b4-8978-f582dedf33b0-do-user-9223075-0.b.db.ondigitalocean.com',
-        'PORT': 25060,
-        'SSLMODE': 'require',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
