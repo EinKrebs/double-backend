@@ -134,4 +134,4 @@ MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 API_SECRET = 'iaksjmdapkojnqw'
 
-STATIC_ROOT = '/static'
+STATIC_ROOT = 'static'
