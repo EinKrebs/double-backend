@@ -6,4 +6,4 @@
 
 Сайт - https://double-backend-sbtdx.ondigitalocean.app/  
 Логин: admin  
-Пароль: asdasd
+Пароль: password
